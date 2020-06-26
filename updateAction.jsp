@@ -26,10 +26,6 @@
 			script.println("location.href = 'login.jsp'");
 			script.println("</script>");
 		} 
-		int boardID = 0;
-		if (request.getParameter("boardID") != null){
-			boardID = Integer.parseInt(request.getParameter("boardID"));
-		}
 		//글이 유효한지 판별
 		int bbsID = 0;
 		if (request.getParameter("bbsID") != null) {
@@ -59,6 +55,10 @@
 				script.println("</script>");
 			} else {
 				BbsDAO bbsDAO = new BbsDAO();
+				int boardID = 0;
+				if (request.getParameter("boardID") != null){
+					boardID = Integer.parseInt(request.getParameter("boardID"));
+				}
 				int result = bbsDAO.update(bbsID, request.getParameter("bbsTitle"), request.getParameter("bbsContent"));
 				if (result == -1) {
 					PrintWriter script = response.getWriter();
