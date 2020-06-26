@@ -3,10 +3,8 @@
 <%@ page import="bbs.BbsDAO"%>
 <%@ page import="bbs.Bbs"%>
 <%@ page import="java.io.PrintWriter"%>
-<%
-	request.setCharacterEncoding("UTF-8");
-	//sresponse.setContentType("text/html; charset=UTF-8");
-%>
+<%@ page import="java.io.File" %>
+<%	request.setCharacterEncoding("UTF-8");%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -53,7 +51,6 @@
 		} else {
 			BbsDAO bbsDAO = new BbsDAO();
 			int result = bbsDAO.delete(bbsID);
-			System.out.println(result);
 			if (result == -1) {
 				PrintWriter script = response.getWriter();
 				script.println("<script>");
@@ -62,6 +59,11 @@
 				script.println("</script>");
 			} else {
 				PrintWriter script = response.getWriter();
+				String real = "C:\\Users\\j8171\\Desktop\\studyhard\\JSP\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\BBS\\bbsUpload";
+				File delFile = new File(real+"\\"+bbsID+"사진.jpg");
+				if(delFile.exists()){
+					delFile.delete();
+				}
 				script.println("<script>");
 				script.println("location.href= \'bbs.jsp?boardID="+boardID+"\'");
 				script.println("</script>");
