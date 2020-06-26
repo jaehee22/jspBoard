@@ -100,122 +100,124 @@
 		</div>
 	</nav>
 	<div class="container">
-		<div class="row">
-			<table class="table table-striped" style="text-align: center; border: 1px solid #dddddd">
-					<thead>
-						<tr>
-							<th colspan="4" style="background-color: #eeeee; text-align: center;">게시판 글쓰기 양식</th>
-						</tr>
-					</thead>
-						<tr>
-							<td style="width: 20%;">글 제목</td>
-							<td colspan="3"><%= bbs.getBbsTitle().replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">","&gt;").replaceAll("\n","<br>") %></td>
-						</tr>
-						<tr>
-							<td>작성자</td>
-							<td colspan="3"><%= bbs.getUserID() %></td>
-						</tr>
-						<tr>
-							<td>작성일자</td>
-							<td colspan="3"><%= bbs.getBbsDate().substring(0,11) + bbs.getBbsDate().substring(11,13) + "시" +  bbs.getBbsDate().substring(14,16) + "분"  %></td>
-						</tr>
-							<% 	
-								String real = "C:\\Users\\j8171\\Desktop\\studyhard\\JSP\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\BBS\\bbsUpload";
-								File viewFile = new File(real+"\\"+bbsID+"사진.jpg");
-								if(viewFile.exists()){
-							%>
-								<tr>
-									<td><br><br><br><br><br><br><br><br>이미지</td>
-									<td colspan="3" align="center"><img src = "bbsUpload/<%=bbsID %>사진.jpg" border="300px" width="300px" height="300px"></td>
-								</tr>
-							<%} %>
-						
-						<tr>
-							<td>내용</td>
-							<td colspan="3" style="min-height: 200px; text-align: left;"><%= bbs.getBbsContent().replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">","&gt;").replaceAll("\n","<br>")%></td>
-						</tr>
-						<% if(boardID==1){ %>
-						<tr>
-							<td></td>
-							<td><button onclick="location.href='evaluationAction.jsp?likeEat=1&sosoEat=0&badEat=0&bbsID=<%=bbsID%>'">좋아요</button></td>		
-							<td><button onclick="location.href='evaluationAction.jsp?likeEat=0&sosoEat=1&badEat=0&bbsID=<%=bbsID%>'">그럭저럭</button></td>		
-							<td><button onclick="location.href='evaluationAction.jsp?likeEat=0&sosoEat=0&badEat=1&bbsID=<%=bbsID%>'">맛없어요</button></td>		
-						</tr>
-						<tr>
-							<%	
-								int like = 0;
-								int soso = 0;
-								int bad = 0;
-								EvaluationDAO evaluationDAO = new EvaluationDAO();
-								ArrayList<Evaluation> list = evaluationDAO.getList(bbsID);
-								for(int i=0; i<list.size(); i++){
-									like = like + list.get(i).getLikeEat();
-									soso = soso + list.get(i).getSosoEat();
-									bad = bad + list.get(i).getBadEat();
-								}
-							%>
-							<td></td>
-							<td>(<%= like %>)</td>		
-							<td>(<%= soso %>)</td>
-							<td>(<%= bad %>)</td>
-						</tr>
-						<% } %>
-			</table>				
-		</div>
-		<div style="text-align:right">
-			<a href="bbs.jsp?boardID=<%=boardID %>" class="btn-primary">목록</a>
-				<%
-					if(userID != null && userID.equals(bbs.getUserID())){
-				%>
-						<a href = "update.jsp?bbsID=<%= bbsID %>&boardID=<%=boardID %>" class="btn-primary">수정</a>
-						<a onclick="return confirm('정말로 삭제하시겠습니까?')" href = "deleteAction.jsp?bbsID=<%= bbsID %>&boardID=<%=boardID %>" class="btn-primary">삭제</a>
-				
-				<%
-					}
-				%>
-			<a><br><br></a>	
-		</div>
-	</div>
-	<div class="container">
-		<div class="row">
-			<table class="table table-striped" style="text-align: center; border: 1px solid #dddddd">
-				<tbody>
-					<%
-						CommentDAO commentDAO = new CommentDAO();
-						ArrayList<Comment> list = commentDAO.getList(boardID, bbsID);
-						for(int i=0; i<list.size(); i++){
-					%>
+		<div class="col-lg-5">
+		<div class="container">
+			<table class="table table-haver" style="border: 1px solid #dddddd">
 					<tr>
-						<td><%= list.get(i).getUserID() %></td>
-						<td><%= list.get(i).getCommentText() %></td>
-						<td><%= list.get(i).getCommentDate().substring(0,11) + list.get(i).getCommentDate().substring(11,13) + "시" + list.get(i).getCommentDate().substring(14,16) + "분" %></td>
-						<td><%
-								if(list.get(i).getUserID() != null && list.get(i).getUserID().equals(userID)){
-							%>
-									<a onclick="return confirm('정말로 삭제하시겠습니까?')" href = "commentDeleteAction.jsp?commentID=<%= list.get(i).getCommentID() %>" class="btn-primary">삭제</a>
-							<%
-								}
-							%>	
-						</td>
+						<td colspan="6" align="left" bgcolor="beige">&nbsp;&nbsp;[제목]&nbsp;&nbsp;<%= bbs.getBbsTitle().replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">","&gt;").replaceAll("\n","<br>") %></td>
 					</tr>
+					<tr>
+						<td colspan="3" align="left">&nbsp;&nbsp;<%= bbs.getUserID() %></td>
+						<td colspan="3" align="right"><%= bbs.getBbsDate().substring(0,11) + bbs.getBbsDate().substring(11,13) + "시" +  bbs.getBbsDate().substring(14,16) + "분"  %></td>
+					</tr>
+					<% 	
+					String real = "C:\\Users\\j8171\\Desktop\\studyhard\\JSP\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\BBS\\bbsUpload";
+					File viewFile = new File(real+"\\"+bbsID+"사진.jpg");
+					if(viewFile.exists()){
+				%>
+					<tr>
+						<td colspan="6"><br><br><img src = "bbsUpload/<%=bbsID %>사진.jpg" border="300px" width="300px" height="300px"><br><br>
+					<% }
+					else {%><td colspan="6"><br><br><%} %>
+						<%= bbs.getBbsContent().replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">","&gt;").replaceAll("\n","<br>")%><br><br></td>
+					</tr>
+					<tr align="center">
+					<%
+						if(boardID==1){
+						int like = 0;
+						int soso = 0;
+						int bad = 0;
+						EvaluationDAO evaluationDAO = new EvaluationDAO();
+						ArrayList<Evaluation> list = evaluationDAO.getList(bbsID);
+						for(int i=0; i<list.size(); i++){
+							like = like + list.get(i).getLikeEat();
+							soso = soso + list.get(i).getSosoEat();
+							bad = bad + list.get(i).getBadEat();
+						} %>
+							<td colspan="2"><button onclick="location.href='evaluationAction.jsp?likeEat=1&sosoEat=0&badEat=0&bbsID=<%=bbsID%>'">좋아요(<%=like %>)</button></td>		
+							<td colspan="2"><button onclick="location.href='evaluationAction.jsp?likeEat=0&sosoEat=1&badEat=0&bbsID=<%=bbsID%>'">그럭저럭(<%=soso %>)</button></td>		
+							<td colspan="2"><button onclick="location.href='evaluationAction.jsp?likeEat=0&sosoEat=0&badEat=1&bbsID=<%=bbsID%>'">맛없어요(<%=bad %>)</button></td>		
+					</tr>
+					<tr>
+					<td colspan="6" align="center">	<a href="bbs.jsp?boardID=<%=boardID %>" class="btn-primary" >목록</a>
+					<%
+						if(userID != null && userID.equals(bbs.getUserID())){
+					%>
+							<a href = "update.jsp?bbsID=<%= bbsID %>&boardID=<%=boardID %>" class="btn-primary">수정</a>
+							<a onclick="return confirm('정말로 삭제하시겠습니까?')" href = "deleteAction.jsp?bbsID=<%= bbsID %>&boardID=<%=boardID %>" class="btn-primary">삭제</a>
+					
 					<%
 						}
 					%>
-				</tbody>
-			</table>			
+					</td>
+					</tr>
+					<% } %>
+			</table>		
 		</div>
-	</div>
-	<div class="container">
-		<div class="form-group">
-		<form method="post" action="commentAction.jsp?bbsID=<%= bbsID %>&boardID=<%=boardID%>">
-				<table class="table table-striped" style="text-align: center;">
+		<div class="container">
+			<div class="row">
+				<table class="table table-striped" style="text-align: center; border: 1px solid #dddddd">
+					<tbody>
 					<tr>
-						<td valign="middle"><br><br><%= userID %></td>
-						<td><input type="text" style="height:100px;" class="form-control" placeholder="상대방을 존중하는 댓글을 남깁시다." name = "commentText"></td>
-						<td><br><br><input type="submit" class="btn-primary pull" value="댓글 작성"></td>
+						<td align="left" bgcolor="beige">댓글</td>
+					</tr>
+					<tr>
+						<%
+							CommentDAO commentDAO = new CommentDAO();
+							ArrayList<Comment> list = commentDAO.getList(boardID, bbsID);
+							for(int i=0; i<list.size(); i++){
+						%>
+							<div class="container">
+								<div class="row">
+									<table class="table table-striped" style="text-align: center; border: 1px solid #dddddd">
+										<tbody>
+										<tr>						
+										<td align="left"><%= list.get(i).getUserID() %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp<%= list.get(i).getCommentDate().substring(0,11) + list.get(i).getCommentDate().substring(11,13) + "시" + list.get(i).getCommentDate().substring(14,16) + "분" %></td>		
+										<td colspan="2"></td>
+										<td align="right"><%
+													if(list.get(i).getUserID() != null && list.get(i).getUserID().equals(userID)){
+												%>
+														<a onclick="return confirm('정말로 삭제하시겠습니까?')" href = "commentDeleteAction.jsp?commentID=<%= list.get(i).getCommentID() %>" class="btn-primary">삭제</a>
+												<%
+													}
+												%>	
+											&nbsp;&nbsp;</td>
+										</tr>
+										<tr>
+											<td colspan="5" align="left"><%= list.get(i).getCommentText() %>
+											<% 	
+												String commentReal = "C:\\Users\\j8171\\Desktop\\studyhard\\JSP\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\BBS\\commentUpload";
+												File commentFile = new File(commentReal+"\\사진"+list.get(i).getCommentID()+".jpg");
+												if(commentFile.exists()){
+											%>	
+											<br><br><img src = "commentUpload/사진<%=list.get(i).getCommentID() %>.jpg" border="300px" width="300px" height="300px"><br><br></td>
+											<%} %>	
+										</tr>
+									</tbody>
+								</table>			
+							</div>
+						</div>
+						<%
+							}
+						%>
 					</tr>
 				</table>
-		</form>
+			</div>
+		</div>
+		<div class="container">
+			<div class="form-group">
+			<form method="post" encType = "multipart/form-data" action="commentAction.jsp?bbsID=<%= bbsID %>&boardID=<%=boardID%>">
+					<table class="table table-striped" style="text-align: center; border: 1px solid #dddddd">
+						<tr>
+							<td style="border-bottom:none;" valign="middle"><br><br><%= userID %></td>
+							<td><input type="text" style="height:100px;" class="form-control" placeholder="상대방을 존중하는 댓글을 남깁시다." name = "commentText"></td>
+							<td><br><br><input type="submit" class="btn-primary pull" value="댓글 작성"></td>
+						</tr>
+						
+					</table>
+			</form>
+			</div>
+		</div>
 		</div>
 	</div>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
