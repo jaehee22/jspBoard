@@ -26,6 +26,10 @@
 	 		script.println("location href = 'login.jsp'");
 	 		script.println("</script>");
 		}
+		int boardID = 0;
+		if (request.getParameter("boardID") != null){
+			boardID = Integer.parseInt(request.getParameter("boardID"));
+		}
 		int bbsID = 0;
 		if (request.getParameter("bbsID") != null){
 			bbsID = Integer.parseInt(request.getParameter("bbsID"));
@@ -80,7 +84,7 @@
 	<!-- 게시판 --> 
 	<div class="container">
 		<div class="row">
-			<form method="post" action="updateAction.jsp?bbsID=<%= bbsID %> ">
+			<form method="post" action="updateAction.jsp?bbsID=<%= bbsID %>&boardID=<%=boardID%>">
 				<table class="table table-striped"
 					style="text-align: center; border: 1px solid #dddddd">
 					<thead>
