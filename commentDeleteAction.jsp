@@ -3,10 +3,8 @@
 <%@ page import="comment.Comment"%>
 <%@ page import="comment.CommentDAO"%>
 <%@ page import="java.io.PrintWriter"%>
-<%
-	request.setCharacterEncoding("UTF-8");
-	//sresponse.setContentType("text/html; charset=UTF-8");
-%>
+<%@ page import="java.io.File" %>
+<% request.setCharacterEncoding("UTF-8");%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -57,6 +55,11 @@
 				script.println("</script>");
 			} else {
 				PrintWriter script = response.getWriter();
+				String real = "C:\\Users\\j8171\\Desktop\\studyhard\\JSP\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\BBS\\commentUpload";
+				File delFile = new File(real+"\\사진"+commentID+".jpg");
+				if(delFile.exists()){
+					delFile.delete();
+				}
 				script.println("<script>");
 				script.println("location.href=document.referrer;");
 				script.println("</script>");
