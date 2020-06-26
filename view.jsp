@@ -7,6 +7,7 @@
 <%@ page import="evaluation.EvaluationDAO" %>
 <%@ page import="comment.Comment" %>
 <%@ page import="comment.CommentDAO" %>
+<%@ page import="java.io.File" %>
 <%@ page import="java.util.ArrayList"%>
 <!DOCTYPE html>
 <html>
@@ -116,11 +117,22 @@
 						</tr>
 						<tr>
 							<td>작성일자</td>
-							<td colspan="3"><%= bbs.getBbsDate().substring(0,11) +   bbs.getBbsDate().substring(11,13) + "시" +  bbs.getBbsDate().substring(14,16) + "분"  %></td>
+							<td colspan="3"><%= bbs.getBbsDate().substring(0,11) + bbs.getBbsDate().substring(11,13) + "시" +  bbs.getBbsDate().substring(14,16) + "분"  %></td>
 						</tr>
+							<% 	
+								String real = "C:\\Users\\j8171\\Desktop\\studyhard\\JSP\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\BBS\\bbsUpload";
+								File viewFile = new File(real+"\\"+bbsID+"사진.jpg");
+								if(viewFile.exists()){
+							%>
+								<tr>
+									<td><br><br><br><br><br><br><br><br>이미지</td>
+									<td colspan="3" align="center"><img src = "bbsUpload/<%=bbsID %>사진.jpg" border="300px" width="300px" height="300px"></td>
+								</tr>
+							<%} %>
+						
 						<tr>
 							<td>내용</td>
-							<td colspan="3" style="min-height: 200px; text-align: left;"><%= bbs.getBbsContent().replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">","&gt;").replaceAll("\n","<br>") %></td>
+							<td colspan="3" style="min-height: 200px; text-align: left;"><%= bbs.getBbsContent().replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">","&gt;").replaceAll("\n","<br>")%></td>
 						</tr>
 						<% if(boardID==1){ %>
 						<tr>
@@ -151,7 +163,7 @@
 			</table>				
 		</div>
 		<div style="text-align:right">
-			<a href="bbs.jsp" class="btn-primary">목록</a>
+			<a href="bbs.jsp?boardID=<%=boardID %>" class="btn-primary">목록</a>
 				<%
 					if(userID != null && userID.equals(bbs.getUserID())){
 				%>
@@ -180,7 +192,6 @@
 						<td><%
 								if(list.get(i).getUserID() != null && list.get(i).getUserID().equals(userID)){
 							%>
-									<a href = "commentUpdateAction.jsp?bbsID=<%= bbsID %>" class="btn-primary">수정</a>
 									<a onclick="return confirm('정말로 삭제하시겠습니까?')" href = "commentDeleteAction.jsp?commentID=<%= list.get(i).getCommentID() %>" class="btn-primary">삭제</a>
 							<%
 								}
