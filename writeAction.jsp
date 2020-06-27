@@ -40,8 +40,10 @@
 		multi = new MultipartRequest(request,realFolder,maxSize,encType,new DefaultFileRenamePolicy());		
 		String fileName = multi.getFilesystemName("fileName");
 		String bbsTitle = multi.getParameter("bbsTitle");
+		String map = multi.getParameter("map");
 		String bbsContent = multi.getParameter("bbsContent");
 		bbs.setBbsTitle(bbsTitle);
+		bbs.setMap(map);
 		bbs.setBbsContent(bbsContent);
 
 	 	if(userID == null){
@@ -51,7 +53,7 @@
 	 		script.println("location.href = 'login.jsp'");
 	 		script.println("</script>");
 	 	} else {
-	 		if (bbs.getBbsTitle() == null || bbs.getBbsContent() == null){
+	 		if (bbs.getBbsTitle().equals("") || bbs.getBbsContent().equals("")||(boardID==1&&bbs.getMap().equals(""))){
 	 			PrintWriter script = response.getWriter();
 		 		script.println("<script>");
 		 		script.println("alert('입력이 안된 사항이 있습니다.')");
@@ -59,7 +61,7 @@
 		 		script.println("</script>");
 		 	} else {
 		 		BbsDAO BbsDAO = new BbsDAO();
-		 		int bbsID = BbsDAO.write(boardID, bbs.getBbsTitle(), userID, bbs.getBbsContent());
+		 		int bbsID = BbsDAO.write(boardID, bbs.getBbsTitle(), userID, bbs.getBbsContent(),map);
 		 		if (bbsID == -1){
 			 		PrintWriter script = response.getWriter();
 			 		script.println("<script>");
