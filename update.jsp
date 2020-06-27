@@ -84,7 +84,7 @@
 	<!-- 게시판 --> 
 	<div class="container">
 		<div class="row">
-			<form method="post" action="updateAction.jsp?bbsID=<%= bbsID %>&boardID=<%=boardID%>">
+			<form method="post" encType = "multipart/form-data"  action="updateAction.jsp?bbsID=<%= bbsID %>&boardID=<%=boardID%>">
 				<table class="table table-striped"
 					style="text-align: center; border: 1px solid #dddddd">
 					<thead>
@@ -97,8 +97,16 @@
 						<tr>
 							<td><input type="text" class="form-control" placeholder="글 제목" name="bbsTitle" maxlength="50" value="<%= bbs.getBbsTitle() %>" ></td>
 						</tr>
+					<%if(boardID==1){ %>
+						<tr>
+							<td><input type="text" class="form-control" placeholder="주소" name="map" maxlength="50" value="<%=bbs.getMap()%>"></td>
+						</tr>
+					<%} %>						
 						<tr>
 							<td><textarea class="form-control" placeholder="글 내용" name="bbsContent" maxlength="2048" style="height: 350px;" ><%= bbs.getBbsContent() %></textarea></td>
+						</tr>
+						<tr>
+							<td><input type="file" name="fileName"></td>
 						</tr>
 					</tbody>
 				</table>	
