@@ -13,6 +13,5 @@ JAVA, Spring, javaScript, jQuery, Mysql
 ## 4. 영상
 https://youtu.be/3EG7jlWbWxI
 ## 5. 앞으로 추가할 사항
-1. 주소를 입력하면 지도와 연동해서 위치 확인할 수 있도록 한다.
-2. 검색 기능 추가
-3. 댓글 수정 기능 구현
+1. 검색 기능 추가
+2. 댓글 수정 기능 구현
