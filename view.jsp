@@ -126,6 +126,7 @@
 						int like = 0;
 						int soso = 0;
 						int bad = 0;
+						String Map = bbs.getMap().replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">","&gt;").replaceAll("\n","<br>");
 						EvaluationDAO evaluationDAO = new EvaluationDAO();
 						ArrayList<Evaluation> list = evaluationDAO.getList(bbsID);
 						for(int i=0; i<list.size(); i++){
@@ -134,7 +135,7 @@
 							bad = bad + list.get(i).getBadEat();
 						} %>
 					<tr>
-						<td colspan="6" align="left">&nbsp;&nbsp;[주소]&nbsp;&nbsp;<%= bbs.getMap().replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">","&gt;").replaceAll("\n","<br>") %></td>
+						<td colspan="6" align="left">&nbsp;&nbsp;[주소]&nbsp;&nbsp;<a href=https://map.naver.com/v5/search/<%=Map%>><%=Map %></a></td>
 					</tr>
 					<tr align="center">
 						<td colspan="2"><button onclick="location.href='evaluationAction.jsp?likeEat=1&sosoEat=0&badEat=0&bbsID=<%=bbsID%>'">좋아요(<%=like %>)</button></td>		
