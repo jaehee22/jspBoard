@@ -121,7 +121,6 @@
 					else {%><td colspan="6"><br><br><%} %>
 						<%= bbs.getBbsContent().replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">","&gt;").replaceAll("\n","<br>")%><br><br></td>
 					</tr>
-					<tr align="center">
 					<%
 						if(boardID==1){
 						int like = 0;
@@ -134,9 +133,13 @@
 							soso = soso + list.get(i).getSosoEat();
 							bad = bad + list.get(i).getBadEat();
 						} %>
-							<td colspan="2"><button onclick="location.href='evaluationAction.jsp?likeEat=1&sosoEat=0&badEat=0&bbsID=<%=bbsID%>'">좋아요(<%=like %>)</button></td>		
-							<td colspan="2"><button onclick="location.href='evaluationAction.jsp?likeEat=0&sosoEat=1&badEat=0&bbsID=<%=bbsID%>'">그럭저럭(<%=soso %>)</button></td>		
-							<td colspan="2"><button onclick="location.href='evaluationAction.jsp?likeEat=0&sosoEat=0&badEat=1&bbsID=<%=bbsID%>'">맛없어요(<%=bad %>)</button></td>		
+					<tr>
+						<td colspan="6" align="left">&nbsp;&nbsp;[주소]&nbsp;&nbsp;<%= bbs.getMap().replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">","&gt;").replaceAll("\n","<br>") %></td>
+					</tr>
+					<tr align="center">
+						<td colspan="2"><button onclick="location.href='evaluationAction.jsp?likeEat=1&sosoEat=0&badEat=0&bbsID=<%=bbsID%>'">좋아요(<%=like %>)</button></td>		
+						<td colspan="2"><button onclick="location.href='evaluationAction.jsp?likeEat=0&sosoEat=1&badEat=0&bbsID=<%=bbsID%>'">그럭저럭(<%=soso %>)</button></td>		
+						<td colspan="2"><button onclick="location.href='evaluationAction.jsp?likeEat=0&sosoEat=0&badEat=1&bbsID=<%=bbsID%>'">맛없어요(<%=bad %>)</button></td>		
 					</tr>
 					<tr>
 					<td colspan="6" align="center">	<a href="bbs.jsp?boardID=<%=boardID %>" class="btn-primary" >목록</a>
