@@ -9,6 +9,7 @@
 <% request.setCharacterEncoding("UTF-8"); %>
 <jsp:useBean id="bbs" class="bbs.Bbs" scope="page" />
 <jsp:setProperty name="bbs" property="bbsTitle" />
+<jsp:setProperty name="bbs" property="map" />
 <jsp:setProperty name="bbs" property="bbsContent" />
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -30,6 +31,7 @@
 		String realFolder="";
 		String saveFolder = "bbsUpload";
 		String encType = "utf-8";
+		String map="";
 		int maxSize=5*1024*1024;
 		
 		ServletContext context = this.getServletContext();
@@ -40,11 +42,13 @@
 		multi = new MultipartRequest(request,realFolder,maxSize,encType,new DefaultFileRenamePolicy());		
 		String fileName = multi.getFilesystemName("fileName");
 		String bbsTitle = multi.getParameter("bbsTitle");
-		String map = multi.getParameter("map");
 		String bbsContent = multi.getParameter("bbsContent");
 		bbs.setBbsTitle(bbsTitle);
-		bbs.setMap(map);
 		bbs.setBbsContent(bbsContent);
+		if(boardID==1){
+			map = multi.getParameter("map");
+		}
+		bbs.setMap(map);
 
 	 	if(userID == null){
 	 		PrintWriter script = response.getWriter();
@@ -61,7 +65,7 @@
 		 		script.println("</script>");
 		 	} else {
 		 		BbsDAO BbsDAO = new BbsDAO();
-		 		int bbsID = BbsDAO.write(boardID, bbs.getBbsTitle(), userID, bbs.getBbsContent(),map);
+		 		int bbsID = BbsDAO.write(boardID, bbs.getBbsTitle(), userID, bbs.getBbsContent(),bbs.getMap());
 		 		if (bbsID == -1){
 			 		PrintWriter script = response.getWriter();
 			 		script.println("<script>");
