@@ -13,5 +13,4 @@ JAVA, Spring, javaScript, jQuery, Mysql
 ## 4. 영상
 https://youtu.be/3EG7jlWbWxI
 ## 5. 앞으로 추가할 사항
-1. 검색 기능 추가
-2. 댓글 수정 기능 구현
+1. 댓글 수정 기능 구현
