@@ -126,10 +126,20 @@
 						%>
 					</tbody>
 				</table>
+				<form name = "p_search">
+					<input type="button" value="검색" onclick="nwindow(<%=boardID%>)"/>
+				</form>				
 				<a href="write.jsp?boardID=<%=boardID%>" class="btn-primary pull-right">글쓰기</a>
 			</div>
 		</div>
 	</div>
+	<script>
+	function nwindow(boardID){
+		window.name = "parant";
+		var url= "search.jsp?boardID="+boardID;
+		window.open(url,"","width=250,height=200,left=300");
+	}
+</script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script src="js/bootstrap.min.js"></script> 
 </body>
