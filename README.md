@@ -10,7 +10,7 @@ JAVA, Spring, javaScript, jQuery, Mysql
 
 ## 3. database EER Diagram
 ![er](https://user-images.githubusercontent.com/58822916/85405520-7f636480-b59b-11ea-9975-5f502261292e.JPG)
-## 4. 영상
+## 4. 게시물 영상
 https://youtu.be/NTuHjMev7S8
 
 ![1234](https://user-images.githubusercontent.com/58822916/85992635-2038a080-ba30-11ea-88dc-94a89d7dd3ff.JPG)
