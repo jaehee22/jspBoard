@@ -143,16 +143,15 @@
 						<td colspan="2"><button onclick="location.href='evaluationAction.jsp?likeEat=0&sosoEat=0&badEat=1&bbsID=<%=bbsID%>'">맛없어요(<%=bad %>)</button></td>		
 					</tr>
 					<tr>
+					<%
+						}
+					%>
 					<td colspan="6" align="center">	<a href="bbs.jsp?boardID=<%=boardID %>" class="btn-primary" >목록</a>
 					<%
 						if(userID != null && userID.equals(bbs.getUserID())){
 					%>
 							<a href = "update.jsp?bbsID=<%= bbsID %>&boardID=<%=boardID %>" class="btn-primary">수정</a>
 							<a onclick="return confirm('정말로 삭제하시겠습니까?')" href = "deleteAction.jsp?bbsID=<%= bbsID %>&boardID=<%=boardID %>" class="btn-primary">삭제</a>
-					
-					<%
-						}
-					%>
 					</td>
 					</tr>
 					<% } %>
@@ -176,16 +175,20 @@
 									<table class="table table-striped" style="text-align: center; border: 1px solid #dddddd">
 										<tbody>
 										<tr>						
-										<td align="left"><%= list.get(i).getUserID() %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp<%= list.get(i).getCommentDate().substring(0,11) + list.get(i).getCommentDate().substring(11,13) + "시" + list.get(i).getCommentDate().substring(14,16) + "분" %></td>		
+										<td align="left"><%= list.get(i).getUserID() %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= list.get(i).getCommentDate().substring(0,11) + list.get(i).getCommentDate().substring(11,13) + "시" + list.get(i).getCommentDate().substring(14,16) + "분" %></td>		
 										<td colspan="2"></td>
 										<td align="right"><%
 													if(list.get(i).getUserID() != null && list.get(i).getUserID().equals(userID)){
 												%>
+														<form name = "p_search">
+															<a type="button" onclick="nwindow(<%=boardID%>,<%=bbsID %>,<%=list.get(i).getCommentID()%>)" class="btn-primary">수정</a>
+														</form>	
 														<a onclick="return confirm('정말로 삭제하시겠습니까?')" href = "commentDeleteAction.jsp?commentID=<%= list.get(i).getCommentID() %>" class="btn-primary">삭제</a>
+																	
 												<%
 													}
 												%>	
-											&nbsp;&nbsp;</td>
+										</td>
 										</tr>
 										<tr>
 											<td colspan="5" align="left"><%= list.get(i).getCommentText() %>
@@ -226,6 +229,13 @@
 		</div>
 		</div>
 	</div>
+	<script type="text/javascript">
+	function nwindow(boardID,bbsID,commentID){
+		window.name = "commentParant";
+		var url= "commentUpdate.jsp?boardID="+boardID+"&bbsID="+bbsID+"&commentID="+commentID;
+		window.open(url,"","width=600,height=230,left=300");
+	}
+	</script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script src="js/bootstrap.min.js"></script> 
 </body>
