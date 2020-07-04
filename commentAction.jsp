@@ -79,7 +79,7 @@
 			 		PrintWriter script = response.getWriter();
 			 		if(fileName != null){
 						File oldFile = new File(realFolder+"\\"+fileName);
-						File newFile = new File(realFolder+"\\사진"+(commentID-1)+".jpg");
+						File newFile = new File(realFolder+"\\"+bbsID+"사진"+(commentID-1)+".jpg");
 						oldFile.renameTo(newFile);
 					}
 			 		script.println("<script>");
