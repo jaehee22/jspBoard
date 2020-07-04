@@ -24,7 +24,10 @@
 			script.println("location.href = 'login.jsp'");
 			script.println("</script>");
 		} 
-		
+		int bbsID = 0;
+		if (request.getParameter("bbsID") != null){
+			bbsID = Integer.parseInt(request.getParameter("bbsID"));
+		}
 		//댓글이 유효한지 판별
 		int commentID = 0;
 		if (request.getParameter("commentID") != null) {
@@ -56,7 +59,7 @@
 			} else {
 				PrintWriter script = response.getWriter();
 				String real = "C:\\Users\\j8171\\Desktop\\studyhard\\JSP\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\BBS\\commentUpload";
-				File delFile = new File(real+"\\사진"+commentID+".jpg");
+				File delFile = new File(real+"\\"+bbsID+"사진"+commentID+".jpg");
 				if(delFile.exists()){
 					delFile.delete();
 				}
