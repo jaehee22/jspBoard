@@ -60,10 +60,24 @@
 			} else {
 				PrintWriter script = response.getWriter();
 				String real = "C:\\Users\\j8171\\Desktop\\studyhard\\JSP\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\BBS\\bbsUpload";
+				String commentReal = "C:\\Users\\j8171\\Desktop\\studyhard\\JSP\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\BBS\\commentUpload";
+				
 				File delFile = new File(real+"\\"+bbsID+"사진.jpg");
 				if(delFile.exists()){
 					delFile.delete();
 				}
+				
+				//삭제할 게시판에 작성되어있는 댓글의 사진 삭제
+				File FileList = new File(commentReal);
+				String fileList[] = FileList.list();
+				for(int i=0; i<fileList.length; i++){
+					String FileName = fileList[i];
+					if(FileName.contains(bbsID+"사진")){
+						File deleteFile = new File(commentReal+"\\"+FileName);
+						deleteFile.delete();
+					}
+				}
+				
 				script.println("<script>");
 				script.println("location.href= \'bbs.jsp?boardID="+boardID+"\'");
 				script.println("</script>");
