@@ -27,8 +27,8 @@
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav">
 				<li class="active"><a href="main.jsp">메인</a></li>
-				<li><a href="matBbs.jsp">맛집 평가</a></li>
-				<li><a href="bbs.jsp">자유 게시판</a></li>
+				<li><a href="bbs.jsp?boardID=1&pageNumber=1">맛집 평가</a></li>
+				<li><a href="bbs.jsp?boardID=2&pageNumber=1">자유 게시판</a></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 				<li class="dropdown"><a href="#" class="dropdown-toggle"
