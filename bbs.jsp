@@ -4,6 +4,7 @@
 <%@ page import="bbs.BbsDAO"%>
 <%@ page import="bbs.Bbs"%>
 <%@ page import="java.util.ArrayList"%>
+<%@ page import="java.lang.Math" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -47,11 +48,11 @@
 			<ul class="nav navbar-nav">
 				<li><a href="main.jsp">메인</a></li>
 				<% if (boardID == 1){ %>
-					<li class="active"><a href="bbs.jsp?boardID=1">맛집 평가</a></li>
-					<li><a href="bbs.jsp?boardID=2">자유 게시판</a></li>
+					<li class="active"><a href="bbs.jsp?boardID=1&pageNumber=1">맛집 평가</a></li>
+					<li><a href="bbs.jsp?boardID=2&pageNumber=1">자유 게시판</a></li>
 				<%} else if(boardID == 2){ %>
-					<li><a href="bbs.jsp?boardID=1">맛집 평가</a></li>
-					<li class="active"><a href="bbs.jsp?boardID=2">자유 게시판</a></li>
+					<li><a href="bbs.jsp?boardID=1&pageNumber=1">맛집 평가</a></li>
+					<li class="active"><a href="bbs.jsp?boardID=2&pageNumber=1">자유 게시판</a></li>
 				<% } %>
 			</ul>
 			<%
@@ -132,7 +133,16 @@
 				<a href="write.jsp?boardID=<%=boardID%>" class="btn-primary pull-right">글쓰기</a>
 			</div>
 		</div>
+		<div class=container style="text-align:center">
+			<%
+				BbsDAO bbsDAO1 = new BbsDAO();
+				int pages = (int) Math.ceil(bbsDAO1.getCount(boardID)/10)+1;
+				for(int i=1; i<=pages; i++){ %>
+					<button type="button" onclick="location.href='bbs.jsp?boardID=<%=boardID %>&pageNumber=<%=i %>'"><%=i %></button>
+				<%} %>
+		</div>
 	</div>
+	
 	<script>
 	function nwindow(boardID){
 		window.name = "parant";
