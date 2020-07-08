@@ -90,7 +90,8 @@
             		data-toggle="dropdown" role="button" aria-haspopup="true" 
             		aria-expanded="false">회원관리<span class="caret"></span></a>
         		<ul class="dropdown-menu">
-              		<a href="logout.jsp">로그아웃</a></li>
+              		<li><a href="jjimBbs.jsp?pageNumber=1">찜목록</a></li>
+              		<li><a href="logout.jsp">로그아웃</a></li>
             	</ul>    
          		</li>
        		</ul>
@@ -104,7 +105,8 @@
 		<div class="container">
 			<table class="table table-haver" style="border: 1px solid #dddddd">
 					<tr>
-						<td colspan="6" align="left" bgcolor="beige">&nbsp;&nbsp;[제목]&nbsp;&nbsp;<%= bbs.getBbsTitle().replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">","&gt;").replaceAll("\n","<br>") %></td>
+						<td colspan="5" align="left" bgcolor="beige">&nbsp;&nbsp;[제목]&nbsp;&nbsp;<%= bbs.getBbsTitle().replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">","&gt;").replaceAll("\n","<br>") %></td>
+						<td align="right" bgcolor="beige"><button onclick = "location.href = 'jjimAction.jsp?bbsID=<%=bbsID %>'">찜하기</button>
 					</tr>
 					<tr>
 						<td colspan="3" align="left">&nbsp;&nbsp;<%= bbs.getUserID() %></td>
