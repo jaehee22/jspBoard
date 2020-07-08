@@ -6,7 +6,7 @@
 JAVA, Spring, javaScript, jQuery, Mysql
 
 ## 3. database EER Diagram
-![er](https://user-images.githubusercontent.com/58822916/85405520-7f636480-b59b-11ea-9975-5f502261292e.JPG)
+![캡처](https://user-images.githubusercontent.com/58822916/86928061-05240a00-c16f-11ea-88e4-3fa6daacfa23.JPG)
 
 ## 4. 주요 기능
 1. 회원가입/로그인
