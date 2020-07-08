@@ -30,7 +30,7 @@
 				<li><a href="bbs.jsp?boardID=1&pageNumber=1">맛집 평가</a></li>
 				<li><a href="bbs.jsp?boardID=2&pageNumber=1">자유 게시판</a></li>
 			</ul>
-			</ul>
+			
 			<ul class="nav navbar-nav navbar-right">
          		<li class="dropdown">
            			<a href="#" class="dropdown-toggle" 
