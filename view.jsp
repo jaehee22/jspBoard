@@ -3,6 +3,8 @@
 <%@ page import="java.io.PrintWriter"%>
 <%@ page import="bbs.Bbs" %>
 <%@ page import="bbs.BbsDAO" %>
+<%@ page import="bbs.JjimDAO" %>
+<%@ page import="bbs.Jjim" %>
 <%@ page import="evaluation.Evaluation" %>
 <%@ page import="evaluation.EvaluationDAO" %>
 <%@ page import="comment.Comment" %>
@@ -76,7 +78,7 @@
             		data-toggle="dropdown" role="button" aria-haspopup="true" 
             		aria-expanded="false">접속하기<span class="caret"></span></a>
         			<ul class="dropdown-menu">
-        				<a href="login.jsp">로그인</a></li>
+        				<li><a href="login.jsp">로그인</a></li>
               			<li><a href="join.jsp">회원가입</a></li>
         			</ul>
          		</li>
@@ -104,10 +106,24 @@
 		<div class="col-lg-5">
 		<div class="container">
 			<table class="table table-haver" style="border: 1px solid #dddddd">
+					<%if(boardID == 1){%>
 					<tr>
 						<td colspan="5" align="left" bgcolor="beige">&nbsp;&nbsp;[제목]&nbsp;&nbsp;<%= bbs.getBbsTitle().replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">","&gt;").replaceAll("\n","<br>") %></td>
-						<td align="right" bgcolor="beige"><button onclick = "location.href = 'jjimAction.jsp?bbsID=<%=bbsID %>'">찜하기</button>
+						<%	JjimDAO jjimDAO = new JjimDAO();
+							ArrayList<Jjim> list1 = jjimDAO.getJjim(userID, bbsID);
+							if (list1.isEmpty()){%>
+						<td align="right" bgcolor="beige"><button onclick = "location.href='jjimAction.jsp?bbsID=<%=bbsID%>'">찜하기</button></td>
+						<%	}
+							else{%>
+						<td align="right" bgcolor="beige"><button onclick = "location.href='jjimAction.jsp?bbsID=<%=bbsID%>'">찜해제</button></td>
+						<%	} %>						
 					</tr>
+					<%} 
+					if (boardID == 2){%>
+					<tr>
+						<td colspan="6" align="left" bgcolor="beige">&nbsp;&nbsp;[제목]&nbsp;&nbsp;<%= bbs.getBbsTitle().replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">","&gt;").replaceAll("\n","<br>") %></td>
+					</tr>
+					<%} %>	
 					<tr>
 						<td colspan="3" align="left">&nbsp;&nbsp;<%= bbs.getUserID() %></td>
 						<td colspan="3" align="right"><%= bbs.getBbsDate().substring(0,11) + bbs.getBbsDate().substring(11,13) + "시" +  bbs.getBbsDate().substring(14,16) + "분"  %></td>
@@ -137,7 +153,7 @@
 							bad = bad + list.get(i).getBadEat();
 						} %>
 					<tr>
-						<td colspan="6" align="left">&nbsp;&nbsp;[주소]&nbsp;&nbsp;<a href=https://map.naver.com/v5/search/<%=Map%>><%=Map %></a></td>
+						<td colspan="6" align="left">&nbsp;&nbsp;[주소]&nbsp;&nbsp;<a href="https://map.naver.com/v5/search/<%=Map%>"><%=Map %></a></td>
 					</tr>
 					<tr align="center">
 						<td colspan="2"><button onclick="location.href='evaluationAction.jsp?likeEat=1&sosoEat=0&badEat=0&bbsID=<%=bbsID%>'">좋아요(<%=like %>)</button></td>		
@@ -218,7 +234,7 @@
 			<form method="post" encType = "multipart/form-data" action="commentAction.jsp?bbsID=<%= bbsID %>&boardID=<%=boardID%>">
 					<table class="table table-striped" style="text-align: center; border: 1px solid #dddddd">
 						<tr>
-							<td style="border-bottom:none;" valign="middle"><br><br><%= userID %></td>
+							<td style="border-bottom:none;" valign="middle"><br><br><%=userID %></td>
 							<td><input type="text" style="height:100px;" class="form-control" placeholder="상대방을 존중하는 댓글을 남깁시다." name = "commentText"></td>
 							<td><br><br><input type="submit" class="btn-primary pull" value="댓글 작성"></td>
 						</tr>
