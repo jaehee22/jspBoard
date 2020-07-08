@@ -67,7 +67,7 @@
             		data-toggle="dropdown" role="button" aria-haspopup="true" 
             		aria-expanded="false">접속하기<span class="caret"></span></a>
         		<ul class="dropdown-menu">
-              		<a href="login.jsp">로그인</a></li>
+              		<li><a href="login.jsp">로그인</a></li>
               		<li><a href="join.jsp">회원가입</a></li>
             		</ul>    
          		</li>
@@ -81,8 +81,9 @@
             		data-toggle="dropdown" role="button" aria-haspopup="true" 
             		aria-expanded="false">회원관리<span class="caret"></span></a>
         		<ul class="dropdown-menu">
-              		<a href="logout.jsp">로그아웃</a></li>
-            	</ul>    
+        			<li><a href="jjimBbs.jsp">북마크</a></li>
+              		<li><a href="logout.jsp">로그아웃</a></li>
+            	</ul>     
          		</li>
        		</ul>
 			<%
