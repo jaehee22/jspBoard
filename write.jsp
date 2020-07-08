@@ -4,11 +4,18 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta charset="UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width", initial-scale="1">
 <link rel="stylesheet" href="css/bootstrap.css">
 <link rel="stylesheet" href="css/custom.css">
-
+<script type="text/javascript">
+	function goPopup(){
+		var pop = window.open("jusoPopup.jsp","pop","width=570,height=420, scrollbars=yes, resizable=yes"); 
+	}
+	function jusoCallBack(roadFullAddr){
+		document.form.map.value = roadFullAddr;
+	}
+</script>
 <title>맛집 게시판</title>
 </head>
 <body>
@@ -81,27 +88,28 @@
 	</nav>
 	<div class="container">
 		<div class="row">
-		<form method="post" encType = "multipart/form-data" action="writeAction.jsp?boardID=<%=boardID%>&keyValue=multipart">
+		<form name = "form" method="post" encType = "multipart/form-data" action="writeAction.jsp?boardID=<%=boardID%>&keyValue=multipart">
 			<table class="table table-striped" style="text-align: center; border: 1px solid #dddddd">
 					<thead>
 						<tr>
-							<th style="background-color: #eeeee; text-align: center;">게시판 글쓰기 양식</th>
+							<th colspan="5" style="background-color: #eeeee; text-align: center;">게시판 글쓰기 양식</th>
 						</tr>
 					</thead>
 					<tbody>
 						<tr>
-							<td><input type="text" class="form-control" placeholder="글 제목" name="bbsTitle" maxlength="50"></td>
+							<td colspan="5" ><input type="text" class="form-control" placeholder="글 제목" name="bbsTitle" maxlength="50"></td>
 						</tr>
 					<%if(boardID==1){ %>
 						<tr>
-							<td><input type="text" class="form-control" placeholder="주소" name="map" maxlength="50"></td>
+							<td colspan="4" ><input type="text" id="map" name="map" class="form-control" placeholder="주소"/></td>
+							<td colspan="1"><input type="button" onClick="goPopup();" value="주소 검색"/></td>
 						</tr>
 					<%} %>
 						<tr>
-							<td><textarea class="form-control" placeholder="글 내용" name="bbsContent" maxlength="2048" style="height:350px;"></textarea></td>
+							<td colspan="5" ><textarea class="form-control" placeholder="글 내용" name="bbsContent" maxlength="2048" style="height:350px;"></textarea></td>
 						</tr>
 						<tr>
-							<td><input type="file" name="fileName"></td>
+							<td colspan="5" ><input type="file" name="fileName"></td>
 						</tr>
 					</tbody>
 				</table>
@@ -109,6 +117,7 @@
 		</form>
 		</div>
 	</div>
+
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script src="js/bootstrap.min.js"></script> 
 </body>
