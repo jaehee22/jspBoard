@@ -48,7 +48,6 @@
 				result = jjimDAO.delete(userID, bbsID);
 				PrintWriter script = response.getWriter();
 		 		script.println("<script>");
-		 		script.println("alert('북마크에서 제거 완료 했습니다.')");
 		 		script.println("location.href=document.referrer;");
 		 		script.println("</script>");
 			}
