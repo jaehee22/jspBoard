@@ -14,7 +14,5 @@ JAVA, Spring, javaScript, jQuery, Mysql
 https://youtu.be/NTuHjMev7S8
 
 ![1234](https://user-images.githubusercontent.com/58822916/85992635-2038a080-ba30-11ea-88dc-94a89d7dd3ff.JPG)
-+ 영상중에 검색 팝업창이 안나왔는데 위 화면이 나오고 원하는 검색명을 검색하면 결과가 나오게 됩니다. 위의 영상에서는 안녕 이라는 단어를 검색했음
++ 영상중에 검색 팝업창이 안나왔는데 위 화면이 나오고 원하는 검색명을 검색하면 결과가 나오게 됩니다. 위의 영상에서는 안녕 이라는 단어를 검색했습니다.
 
-## 5. 추가할 사항
-1. 게시판 쪽번호 매기기
