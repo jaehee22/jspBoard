@@ -74,7 +74,7 @@
 						</div>
 					</div>
 					<div class="form-group">
-						<input type="text" class="form-control" placeholder="핸드폰번호"
+						<input type="tel" class="form-control" placeholder="핸드폰번호"
 							name="userPhoneNumber" maxlength="50">					</div>
 					<input type="submit" class="btn btn-primary form-control"
 						value="회원가입">
