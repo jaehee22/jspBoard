@@ -1,0 +1,159 @@
+package bbs;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+
+public class JjimDAO {
+
+	private Connection conn;	//db에 접근하는 객체
+	private PreparedStatement pstmt;
+	private ResultSet rs;
+	private ResultSet rs1;
+	
+	public JjimDAO() {
+		try {
+			String dbURL = "jdbc:mysql://localhost:3306/BBS";
+			String dbID = "root";
+			String dbPassword = "1234";
+			Class.forName("com.mysql.jdbc.Driver");
+			conn = DriverManager.getConnection(dbURL,dbID,dbPassword);
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	public int getNext() {
+		String SQL = "SELECT bbsID FROM BBS ORDER BY bbsID DESC";
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(SQL);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				return rs.getInt(1) + 1;
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return 1; //첫번째 게시물인 경우
+	}
+	
+	public int getCount(int boardID) {
+		String SQL = "SELECT COUNT(*) FROM BBS WHERE boardID = ?";
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(SQL);
+			pstmt.setInt(1, boardID);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {	
+				return rs.getInt(1);
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return -1;
+	}
+	
+	public ArrayList<Bbs> getList(String userID, int pageNumber){
+		String SQL = "SELECT bbsID FROM jjim WHERE userID = ? ORDER BY bbsID DESC LIMIT 10"; 
+		ArrayList<Bbs> list = new ArrayList<Bbs>();
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(SQL);
+			pstmt.setString(1, userID);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				String sql = "SELECT * FROM WHERE bbsID = ?";
+				try {
+					PreparedStatement PSTMT = conn.prepareStatement(sql);
+					PSTMT.setInt(1, rs.getInt(1));
+					rs1 = PSTMT.executeQuery();
+					while(rs1.next()){
+						Bbs bbs = new Bbs();
+						bbs.setBoardID(rs.getInt(1));
+						bbs.setBbsID(rs.getInt(2));
+						bbs.setBbsTitle(rs.getString(3));
+						bbs.setUserID(rs.getString(4));
+						bbs.setBbsDate(rs.getString(5));
+						bbs.setBbsContent(rs.getString(6));
+						bbs.setMap(rs.getString(7));
+						bbs.setBbsAvailable(rs.getInt(8));
+						list.add(bbs);
+					}
+				}catch(Exception e) {
+					e.printStackTrace();
+				}
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return list; //데이터베이스 오류
+	}
+
+	public boolean nextPage (int boardID, int pageNumber) {
+		String SQL = "SELECT * FROM BBS WHERE boardID = ? AND bbsID < ? AND bbsAvailable = 1";
+		ArrayList<Bbs>list = new ArrayList<Bbs>();
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(SQL);
+			pstmt.setInt(1, boardID);
+			pstmt.setInt(2,  getNext() - (pageNumber - 1) * 10);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				return true;
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return false; //데이터베이스 오류
+	}
+	
+	public int write(String userID, int bbsID) {
+		String SQL = "INSERT INTO jjim VALUES(?, ?)";
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(SQL);
+			pstmt.setString(1, userID);
+			pstmt.setInt(2, bbsID);
+			return getNext();
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return -1; //데이터베이스 오류
+	}
+	
+	public Bbs getBbs(int bbsID) {
+		String SQL = "SELECT * FROM BBS WHERE bbsID = ?";
+		ArrayList<Bbs>list = new ArrayList<Bbs>();
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(SQL);
+			pstmt.setInt(1,  bbsID);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				Bbs bbs = new Bbs();
+				bbs.setBoardID(rs.getInt(1));
+				bbs.setBbsID(rs.getInt(2));
+				bbs.setBbsTitle(rs.getString(3));
+				bbs.setUserID(rs.getString(4));
+				bbs.setBbsDate(rs.getString(5));
+				bbs.setBbsContent(rs.getString(6));
+				bbs.setMap(rs.getString(7));
+				bbs.setBbsAvailable(rs.getInt(8));
+				return bbs;
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	public int delete(String userID,int bbsID) {
+		String SQL = "DELETE FROM BBS WHERE userID = ? AND bbsID = ?";
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(SQL);
+			pstmt.setString(1, userID);
+			pstmt.setInt(2, bbsID);
+			return pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return -1; // 데이터베이스 오류
+	}
+}
