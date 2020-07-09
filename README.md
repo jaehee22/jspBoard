@@ -9,10 +9,10 @@ JAVA, Spring, javaScript, jQuery, Mysql
 ![캡처](https://user-images.githubusercontent.com/58822916/86928061-05240a00-c16f-11ea-88e4-3fa6daacfa23.JPG)
 
 ## 4. 주요 기능
-# 1) 기본 기능
+### 1) 기본 기능
 1. 회원가입/로그인
 2. 게시물 보기/쓰기/수정/삭제
-# 2) 추가한 기능
+### 2) 추가한 기능
 1. 댓글 보기/쓰기/수정/삭제
 2. 게시판 맛집게시판/자유게시판/찜목록 (게시판 나누기
 3. 페이징
