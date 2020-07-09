@@ -79,7 +79,6 @@
 				<div style = "text-align : center;">
 					<img src = "images/전.jpg" border="400px" width="400px" height="350px">
 					<div style = "text-align : right;">
-					<p><br><a class="btn-primary btn-pull" href="#" role="button">자세히 알아보기</a></p>
 				</div>
 			</div>
 		</div>
