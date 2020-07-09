@@ -46,10 +46,6 @@
 			}
 			else{
 				result = jjimDAO.delete(userID, bbsID);
-				PrintWriter script = response.getWriter();
-		 		script.println("<script>");
-		 		script.println("location.href=document.referrer;");
-		 		script.println("</script>");
 			}
 	 		if (result == -1){
 		 		PrintWriter script = response.getWriter();
