@@ -17,3 +17,7 @@ JAVA, Spring, javaScript, jQuery, Mysql
 
 ## 5. 게시물 실행 영상
 https://www.youtube.com/watch?v=bn91sRhUtxg&feature=youtu.be
+
+## 6. 코드 설명
+https://blog.naver.com/2ejhi
+<개인적으로 추가한 기능만 게시판 개발칸에 적어놓았습니다.>
