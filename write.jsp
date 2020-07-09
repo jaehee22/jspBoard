@@ -12,8 +12,8 @@
 	function goPopup(){
 		var pop = window.open("jusoPopup.jsp","pop","width=570,height=420, scrollbars=yes, resizable=yes"); 
 	}
-	function jusoCallBack(roadFullAddr){
-		document.form.map.value = roadFullAddr;
+	function jusoCallBack(roadAddrPart1){
+		document.form.map.value = roadAddrPart1;
 	}
 </script>
 <title>맛집 게시판</title>
