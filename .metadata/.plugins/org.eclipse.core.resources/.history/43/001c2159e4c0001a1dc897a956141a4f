@@ -1,0 +1,6 @@
+package bbs;
+
+public class Jjim {
+	private int bbsID;
+	private String userID;
+}
