@@ -3,7 +3,7 @@
 회원들과 자유롭게 맛집을 공유할 수 있는 사이트
 
 ## 2. 프로그램
-JAVA, Spring, javaScript, jQuery, Mysql
+JAVA, javaScript, Mysql
 
 ## 3. database EER Diagram
 ![캡처](https://user-images.githubusercontent.com/58822916/86928061-05240a00-c16f-11ea-88e4-3fa6daacfa23.JPG)
