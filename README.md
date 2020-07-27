@@ -1,24 +1,21 @@
 # JSP를 이용한 회원들끼리 맛집을 공유하는 게시판
 ## 1. 개요
-회원들과 자유롭게 맛집을 공유할 수 있는 사이트
+JSP를 사용하여 회원들과 자유롭게 맛집을 공유할 수 있는 사이트를 만들었습니다.
 
-## 2. 프로그램
-JAVA, javaScript, Mysql, jsp
+## 2. 기술
+JAVA, javaScript, Mysql, JSP
 
 ## 3. database EER Diagram
 ![캡처](https://user-images.githubusercontent.com/58822916/86928061-05240a00-c16f-11ea-88e4-3fa6daacfa23.JPG)
 
 ## 4. 주요 기능
-### 1) 기본 기능
 1. 회원가입/로그인
-2. 게시물 보기/쓰기/수정/삭제
-### 2) 추가한 기능
-1. 댓글 보기/쓰기/수정/삭제
-2. 게시판 맛집게시판/자유게시판/찜목록 (게시판 나누기
-3. 페이징
-4. 맛집 게시판 찜하기/평가하기
-5. 주소api를 사용해서 주소 검색
-6. 게시판 검색
+2. 게시물 CRUD
+3. 댓글 CRUD
+4. 페이징
+5. 맛집 게시판 찜하기/평가하기
+6. 주소api를 사용해서 주소 검색
+7. 게시판 검색
 
 ## 5. 게시물 실행 영상
 https://www.youtube.com/watch?v=bn91sRhUtxg&feature=youtu.be
