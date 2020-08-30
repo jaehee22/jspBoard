@@ -28,6 +28,7 @@ JSP를 이용하여 회원들끼리 맛집을 공유하는 일반 게시판형�
 ## database EER Diagram
 ![캡처](https://user-images.githubusercontent.com/58822916/86928061-05240a00-c16f-11ea-88e4-3fa6daacfa23.JPG)
 
+
 ## 기능
 1. 회원가입/로그인
 2. 게시물 CRUD
@@ -36,6 +37,7 @@ JSP를 이용하여 회원들끼리 맛집을 공유하는 일반 게시판형�
 5. 맛집 게시판 찜하기/평가하기
 6. 주소api를 사용해서 주소 검색
 7. 게시판 검색
+
 
 ## 추가한 부분
 기본적인 게시물을 따라서 학습한 후, 추가하고 싶은 기능을 활용해서 추가했습니다.
@@ -48,8 +50,7 @@ JSP를 이용하여 회원들끼리 맛집을 공유하는 일반 게시판형�
 7. 도로명주소 api https://blog.naver.com/2ejhi/222025860991
 8. 검색기능 https://blog.naver.com/2ejhi/222019196350
 
-## 5. 게시물 실행 영상
+
+## 게시물 실행 영상
 https://www.youtube.com/watch?v=bn91sRhUtxg&feature=youtu.be
 
-## 6. 코드 설명
-https://blog.naver.com/2ejhi
