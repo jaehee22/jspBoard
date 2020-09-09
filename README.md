@@ -16,6 +16,12 @@
 
 [7. 게시물 실행 영상](#7-게시물-실행-영상)
 
+## 1. 개요
+
+
+![image](https://user-images.githubusercontent.com/58822916/92582061-739a5b00-f2cb-11ea-8472-a0733c73b0d1.png)
+
+회원들과 자유롭게 맛집을 공유할 수 있는 사이트입니다.
 
 
 ## 2. 기술
@@ -27,6 +33,10 @@
 
 ## 3. database EER Diagram
 ![캡처](https://user-images.githubusercontent.com/58822916/86928061-05240a00-c16f-11ea-88e4-3fa6daacfa23.JPG)
+
+
+## 4. 사이트맵
+![image](https://user-images.githubusercontent.com/58822916/92581770-0be41000-f2cb-11ea-94e0-26a28f921475.png)
 
 
 ## 5. 기능
